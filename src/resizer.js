@@ -131,7 +131,7 @@
       this._ctx.font = '20px serif';
       this._ctx.textAlign = 'center';
       this._ctx.fillStyle = 'white';
-      this._ctx.fillText(this._image.naturalWidth + ' x ' + this._image.naturalHeight, 0, -this._resizeConstraint.side / 2 - 20);
+      this._ctx.fillText(this._image.naturalWidth + 'x' + this._image.naturalHeight, 0, -this._resizeConstraint.side / 2 - 20);
       this._ctx.textAlign = 'center';
       // Отрисовка прямоугольника, обозначающего область изображения после
       // кадрирования. Координаты задаются от центра.
