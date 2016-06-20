@@ -112,19 +112,19 @@
       // Координаты задаются от центра холста.
       this._ctx.drawImage(this._image, displX, displY);
       // отрисовка затемнённой области
-      this._ctx.fillStyle ='rgba(0,0,0,0.8)';
+      this._ctx.fillStyle = 'rgba(0,0,0,0.8)';
       this._ctx.beginPath();
-      this._ctx.moveTo(-this._container.width /2, -this._container.height /2);
-      this._ctx.lineTo(this._container.width /2, -this._container.height /2);
-      this._ctx.lineTo(this._container.width /2, -this._resizeConstraint.side / 2);
+      this._ctx.moveTo(-this._container.width / 2, -this._container.height / 2);
+      this._ctx.lineTo(this._container.width / 2, -this._container.height / 2);
+      this._ctx.lineTo(this._container.width / 2, -this._resizeConstraint.side / 2);
       this._ctx.lineTo(-this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2);
       this._ctx.lineTo(-this._resizeConstraint.side / 2, this._resizeConstraint.side / 2);
       this._ctx.lineTo(this._resizeConstraint.side / 2, this._resizeConstraint.side / 2);
       this._ctx.lineTo(this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2);
-      this._ctx.lineTo(this._container.width /2, -this._resizeConstraint.side / 2);
-      this._ctx.lineTo(this._container.width /2, this._container.height /2);
-      this._ctx.lineTo(-this._container.width /2, this._container.height /2);
-      this._ctx.lineTo(-this._container.width /2, -this._container.height /2);
+      this._ctx.lineTo(this._container.width / 2, -this._resizeConstraint.side / 2);
+      this._ctx.lineTo(this._container.width / 2, this._container.height / 2);
+      this._ctx.lineTo(-this._container.width / 2, this._container.height / 2);
+      this._ctx.lineTo(-this._container.width / 2, -this._container.height / 2);
       this._ctx.closePath();
       this._ctx.fill();
       // надпись над областью кадрирования
