@@ -77,20 +77,21 @@
     var resizeSize = document.querySelector('#resize-size');
     var confButton = document.querySelector('#resize-fwd');
     if ( !resizeX.value || !resizeY.value || (resizeX.value + resizeSize.value - currentResizer._image.naturalWidth) || (resizeY.value + resizeSize.value - currentResizer._image.naturalHeight)) {
-      confButton.setAttribute('disabled');
+      confButton.disabled = true;
     }
-    else {
-      confButton.setAttribute('enabled');
+    else
+    {
+      confButton.disabled = false;
     }
-    resizeX.oninput = function () {
+    resizeX.oninput = function() {
       resizeFormIsValid();
-    }
-    resizeY.oninput = function () {
+    };
+    resizeY.oninput = function() {
       resizeFormIsValid();
-    }
-    resizeSize.oninput = function () {
+    };
+    resizeSize.oninput = function() {
       resizeFormIsValid();
-    }
+    };
     return true;
   }
 
