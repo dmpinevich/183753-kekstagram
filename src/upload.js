@@ -77,7 +77,19 @@
     var resizeSize = document.querySelector('#resize-size');
     var confButton = document.querySelector('#resize-fwd');
     if ( !resizeX.value || !resizeY.value || (resizeX.value + resizeSize.value - currentResizer._image.naturalWidth) || (resizeY.value + resizeSize.value - currentResizer._image.naturalHeight)) {
-      confButton.style = 'disable';
+      confButton.setAttribute('disabled');
+    }
+    else {
+      confButton.setAttribute('enabled');
+    }
+    resizeX.oninput = function () {
+      resizeFormIsValid();
+    }
+    resizeY.oninput = function () {
+      resizeFormIsValid();
+    }
+    resizeSize.oninput = function () {
+      resizeFormIsValid();
     }
     return true;
   }
