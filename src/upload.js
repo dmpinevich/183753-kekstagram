@@ -79,7 +79,8 @@
     if (!resizeX.value || !resizeY.value || (resizeX.value + resizeSize.value - currentResizer._image.naturalWidth) || (resizeY.value + resizeSize.value - currentResizer._image.naturalHeight)) {
       confButton.disabled = true;
     }
-    else {
+    else
+    {
       confButton.disabled = false;
     }
     resizeX.oninput = function() {
