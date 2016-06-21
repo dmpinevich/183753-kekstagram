@@ -76,7 +76,7 @@
     var resizeY = document.querySelector('#resize-y');
     var resizeSize = document.querySelector('#resize-size');
     var confButton = document.querySelector('#resize-fwd');
-    if (!resizeX.value || !resizeY.value || (resizeX.value + resizeSize.value - currentResizer._image.naturalWidth) || (resizeY.value + resizeSize.value - currentResizer._image.naturalHeight)){
+    if (!resizeX.value || !resizeY.value || (resizeX.value + resizeSize.value - currentResizer._image.naturalWidth) || (resizeY.value + resizeSize.value - currentResizer._image.naturalHeight)) {
       confButton.disabled = true;
     }else{
       confButton.disabled = false;
