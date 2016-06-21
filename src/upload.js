@@ -81,17 +81,17 @@
     }else{
       confButton.disabled = false;
     }
-    resizeX.oninput = function() {
-      resizeFormIsValid();
-    };
-    resizeY.oninput = function() {
-      resizeFormIsValid();
-    };
-    resizeSize.oninput = function() {
-      resizeFormIsValid();
-    };
     return true;
   }
+  resizeX.oninput = function() {
+    resizeFormIsValid();
+  };
+  resizeY.oninput = function() {
+    resizeFormIsValid();
+  };
+  resizeSize.oninput = function() {
+    resizeFormIsValid();
+  };
 
   /**
    * Форма загрузки изображения.
