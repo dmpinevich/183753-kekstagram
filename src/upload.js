@@ -83,13 +83,13 @@
     }
     return true;
   }
-  resizeX.oninput = function() {
+  window.resizeX.oninput = function() {
     resizeFormIsValid();
   };
-  resizeY.oninput = function() {
+  window.resizeY.oninput = function() {
     resizeFormIsValid();
   };
-  resizeSize.oninput = function() {
+  window.resizeSize.oninput = function() {
     resizeFormIsValid();
   };
 
