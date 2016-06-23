@@ -72,7 +72,7 @@
    * @return {boolean}
    */
   function resizeFormIsValid() {
-    if (!resizeX.value || !resizeY.value || (resizeX.value + resizeSize.value - currentResizer._image.naturalWidth) || (resizeY.value + resizeSize.value - currentResizer._image.naturalHeight)) {
+    if ((resizeX.value < 0) || (resizeY.value < 0) || ((resizeX.value + resizeSize.value) > currentResizer._image.naturalWidth) || ((resizeY.value + resizeSize.value) > currentResizer._image.naturalHeight)) {
       confButton.disabled = true;
     }else{
       confButton.disabled = false;
