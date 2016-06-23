@@ -72,24 +72,24 @@
    * @return {boolean}
    */
   function resizeFormIsValid() {
-    var resizeX = document.querySelector('#resize-x');
-    var resizeY = document.querySelector('#resize-y');
-    var resizeSize = document.querySelector('#resize-size');
-    var confButton = document.querySelector('#resize-fwd');
-    if (!resizeX.value || !resizeY.value || (resizeX.value + resizeSize.value - currentResizer._image.naturalWidth) || (resizeY.value + resizeSize.value - currentResizer._image.naturalHeight)) {
+        if (!resizeX.value || !resizeY.value || (resizeX.value + resizeSize.value - currentResizer._image.naturalWidth) || (resizeY.value + resizeSize.value - currentResizer._image.naturalHeight)) {
       confButton.disabled = true;
     }else{
       confButton.disabled = false;
     }
     return true;
   }
-  window.resizeX.oninput = function() {
+  var resizeX = document.querySelector('#resize-x');
+  var resizeY = document.querySelector('#resize-y');
+  var resizeSize = document.querySelector('#resize-size');
+  var confButton = document.querySelector('#resize-fwd');
+  resizeX.oninput = function() {
     resizeFormIsValid();
   };
-  window.resizeY.oninput = function() {
+  resizeY.oninput = function() {
     resizeFormIsValid();
   };
-  window.resizeSize.oninput = function() {
+  resizeSize.oninput = function() {
     resizeFormIsValid();
   };
 
