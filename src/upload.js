@@ -6,6 +6,7 @@
  */
 
 'use strict';
+var browserCookies = require('browser-cookies');
 
 (function() {
   /** @enum {string} */
@@ -238,13 +239,26 @@
    */
   filterForm.onsubmit = function(evt) {
     evt.preventDefault();
-
+    function setMs(){
+      var currentDateMs = Date.now();
+      var currentYear = currentDateMs.getFullYear();
+      var myBirthdayStr = currentYear + '-08-01';
+      var myBirthdayMs = new Date(myBirthdayStr).valueOf();
+      if (currentDateMs <= myBirthdayMs) {
+        var expireMs = currentDateMs - myBirthdayMs;
+      } else {
+        var expireMs = currentDateMs - myBirthdayMs + 365 * 24 * 60 * 60 * 1000;
+      }
+      return expireMs
+    };
+    var currentFilter = forms[3].getAnonymousElementByAttribute('checked');
+    browser-cookies.set('currentFilter',currentFilter.value, {expires: setMs()});
     cleanupResizer();
     updateBackground();
-
     filterForm.classList.add('invisible');
     uploadForm.classList.remove('invisible');
-  };
+      };
+
 
   /**
    * Обработчик изменения фильтра. Добавляет класс из filterMap соответствующий
@@ -274,4 +288,17 @@
 
   cleanupResizer();
   updateBackground();
+})();
+(function getCookie(){
+var currentFilterID = null;
+var currentFilterValue = browser-cookies.get('currentFilter') || 'none';
+switch (currentFilterValue) {
+  case ('none'): currentFilterID = 'upload-filter-none';
+        break;
+  case ('chrome'): currentFilterID = 'upload-filter-chrome';
+    break;
+  case ('sepia'): currentFilterID = 'upload-filter-sepia';
+    }
+  var currentFilter = document.getElementById('#currentFilterID');
+  currentFilter.setAttribute('checked');
 })();
