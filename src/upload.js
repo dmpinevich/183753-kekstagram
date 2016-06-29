@@ -290,14 +290,14 @@ var browserCookies = require('browser-cookies');
   updateBackground();
 })();
 (function getCookie() {
-  var currentFilterID = null;
+  var currentFilterID;
   var currentFilterValue = window.browserCookies.get('currentFilter') || 'none';
   switch (currentFilterValue) {
-  case ('none'): currentFilterID = 'upload-filter-none';
-    break;
-  case ('chrome'): currentFilterID = 'upload-filter-chrome';
-    break;
-  case ('sepia'): currentFilterID = 'upload-filter-sepia';
+    case ('none'): currentFilterID = 'upload-filter-none';
+      break;
+    case ('chrome'): currentFilterID = 'upload-filter-chrome';
+      break;
+    case ('sepia'): currentFilterID = 'upload-filter-sepia';
   }
   var currentFilter = document.getElementById('#currentFilterID');
   currentFilter.setAttribute('checked');
