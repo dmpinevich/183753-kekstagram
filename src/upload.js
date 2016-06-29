@@ -288,7 +288,7 @@ var browserCookies = require('browser-cookies');
 
   cleanupResizer();
   updateBackground();
-    var currentFilterValue = browserCookies.get('currentFilter') || 'none';
+  var currentFilterValue = browserCookies.get('currentFilter') || 'none';
   switch (currentFilterValue) {
     case ('none'): var currentFilter = document.getElementById('upload-filter-none');
       break;
@@ -296,6 +296,6 @@ var browserCookies = require('browser-cookies');
       break;
     case ('sepia'): currentFilter = document.getElementById('upload-filter-sepia');
   }
-    currentFilter.setAttribute('checked');
+  currentFilter.setAttribute('checked');
 })();
 
