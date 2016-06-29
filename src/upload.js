@@ -288,8 +288,6 @@ var browserCookies = require('browser-cookies');
 
   cleanupResizer();
   updateBackground();
-})();
-(function getCookie() {
   var currentFilterID;
   var currentFilterValue = window.browserCookies.get('currentFilter') || 'none';
   switch (currentFilterValue) {
@@ -302,3 +300,4 @@ var browserCookies = require('browser-cookies');
   var currentFilter = document.getElementById('#currentFilterID');
   currentFilter.setAttribute('checked');
 })();
+
