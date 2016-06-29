@@ -289,13 +289,14 @@ var browserCookies = require('browser-cookies');
   cleanupResizer();
   updateBackground();
   var currentFilterValue = browserCookies.get('currentFilter') || 'none';
+  var currentFilter;
   switch (currentFilterValue) {
-    case ('none'): var currentFilter = document.getElementById('upload-filter-none');
+    case ('none'): currentFilter = document.getElementById('upload-filter-none');
       break;
     case ('chrome'): currentFilter = document.getElementById('upload-filter-chrome');
       break;
     case ('sepia'): currentFilter = document.getElementById('upload-filter-sepia');
   }
-  currentFilter.setAttribute('checked');
+  currentFilter.checked = true;
 })();
 
