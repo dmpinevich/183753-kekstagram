@@ -244,7 +244,7 @@ var browserCookies = require('browser-cookies');
       var currentYear = currentDateMs.getFullYear();
       var myBirthdayStr = currentYear + '-08-01';
       var myBirthdayMs = new Date(myBirthdayStr).valueOf();
-      if (currentDateMs <= myBirthdayMs) {
+      if (currentDateMs > myBirthdayMs) {
         var expireMs = currentDateMs - myBirthdayMs;
       } else {
         expireMs = currentDateMs - myBirthdayMs + 365 * 24 * 60 * 60 * 1000;
@@ -252,7 +252,7 @@ var browserCookies = require('browser-cookies');
       return expireMs;
     }
     var currentFilter = document.forms[3].getAnonymousElementByAttribute('checked');
-    window.browserCookies.set('currentFilter', currentFilter.value, {expires: setMs()});
+    browserCookies.set('currentFilter', currentFilter.value, {expires: setMs()});
     cleanupResizer();
     updateBackground();
     filterForm.classList.add('invisible');
@@ -288,16 +288,14 @@ var browserCookies = require('browser-cookies');
 
   cleanupResizer();
   updateBackground();
-  var currentFilterID;
-  var currentFilterValue = window.browserCookies.get('currentFilter') || 'none';
+    var currentFilterValue = browserCookies.get('currentFilter') || 'none';
   switch (currentFilterValue) {
-    case ('none'): currentFilterID = 'upload-filter-none';
+    case ('none'): var currentFilter = document.getElementById('upload-filter-none');
       break;
-    case ('chrome'): currentFilterID = 'upload-filter-chrome';
+    case ('chrome'): currentFilter = document.getElementById('upload-filter-chrome');
       break;
-    case ('sepia'): currentFilterID = 'upload-filter-sepia';
+    case ('sepia'): currentFilter = document.getElementById('upload-filter-sepia');
   }
-  var currentFilter = document.getElementById('#currentFilterID');
-  currentFilter.setAttribute('checked');
+    currentFilter.setAttribute('checked');
 })();
 
