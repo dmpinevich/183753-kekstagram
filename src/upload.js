@@ -251,7 +251,7 @@ var browserCookies = require('browser-cookies');
       }
       return expireMs;
     }
-    var currentFilter = document.forms[3].getAnonymousElementByAttribute('checked');
+    var currentFilter = document.getElementById('upload-filter')['upload-filter'];
     browserCookies.set('currentFilter', currentFilter.value, {expires: setMs()});
     cleanupResizer();
     updateBackground();
