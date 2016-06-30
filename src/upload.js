@@ -289,8 +289,8 @@ var browserCookies = require('browser-cookies');
 
   cleanupResizer();
   updateBackground();
-  var getFilterValue = browserCookies.get('currentFilter') || 'none';
+  var getFilterValue = 'upload-filter-' + (browserCookies.get('currentFilter') || 'none');
   var getFilter = document.getElementById('getFilterValue');
   getFilter.checked = true;
-  })();
+})();
 
