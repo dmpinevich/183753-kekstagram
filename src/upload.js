@@ -240,17 +240,18 @@ var browserCookies = require('browser-cookies');
   filterForm.onsubmit = function(evt) {
     evt.preventDefault();
     function setMs() {
+      var MS_TO_DAY = 86400000;
       var currentDate = new Date();
       var currentYear = currentDate.getFullYear();
       var myBirthdayStr = currentYear + '-08-01';
       var myBirthdayMs = new Date(myBirthdayStr).valueOf();
       var currentDateMs = currentDate.valueOf();
       if (currentDateMs > myBirthdayMs) {
-        var expireMs = currentDateMs - myBirthdayMs;
+        var expireDay = (currentDateMs - myBirthdayMs) / MS_TO_DAY;
       } else {
-        expireMs = currentDateMs - myBirthdayMs + 365 * 24 * 60 * 60 * 1000;
+        expireDay = (currentDateMs - myBirthdayMs) / MS_TO_DAY + 365;
       }
-      return expireMs;
+      return expireDay;
     }
     var currentFilter = document.getElementById('upload-filter')['upload-filter'];
     browserCookies.set('currentFilter', currentFilter.value, {expires: setMs()});
@@ -289,7 +290,7 @@ var browserCookies = require('browser-cookies');
 
   cleanupResizer();
   updateBackground();
-  var getFilter = document.getElementById(' \'upload-filter-\' + (browserCookies.get(\'currentFilter\') || \'none\') ');
+  var getFilter = document.getElementById('upload-filter-' + (browserCookies.get('currentFilter') || 'none'));
   getFilter.checked = true;
 })();
 
