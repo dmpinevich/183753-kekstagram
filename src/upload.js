@@ -246,10 +246,9 @@ var browserCookies = require('browser-cookies');
       var myBirthdayStr = currentYear + '-08-01';
       var myBirthdayMs = new Date(myBirthdayStr).valueOf();
       var currentDateMs = currentDate.valueOf();
-      if (currentDateMs > myBirthdayMs) {
-        var expireDay = (currentDateMs - myBirthdayMs) / MS_TO_DAY;
-      } else {
-        expireDay = (currentDateMs - myBirthdayMs) / MS_TO_DAY + 365;
+      var expireDay = (currentDateMs - myBirthdayMs) / MS_TO_DAY;
+      if (currentDateMs <= myBirthdayMs) {
+        expireDay += 365;
       }
       return expireDay;
     }
