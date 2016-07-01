@@ -14,6 +14,7 @@ getPictureElement = function(data, container) {
   element.querySelector('picture-stats').textContent = data.date;
   element.querySelector('picture-stat picture-comments').textContent = data.comments;
   element.querySelector('picture-stat picture-likes').textContent = data.likes;
+  container.appendChild('element');
   contentImage.onload = function(evt) {
     element.firstChild.src = evt.target.url;
     element.firstChild.width = 182;
@@ -24,7 +25,6 @@ getPictureElement = function(data, container) {
   };
   var contentImage = new Image();
   contentImage.src = data.url;
-  container.appendChild('element');
   return element;
 };
 window.pictures.forEach(function(picture) {
