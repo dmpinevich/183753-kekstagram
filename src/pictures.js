@@ -15,13 +15,13 @@ getPictureElement = function(data, container) {
   element.querySelector('picture-stat picture-comments').textContent = data.comments;
   element.querySelector('picture-stat picture-likes').textContent = data.likes;
   contentImage.onload = function(evt) {
-    element.firstChild.src = 'evt.target.url';
+    element.firstChild.src = evt.target.url;
     element.firstChild.width = 182;
     element.firstChild.height = 182;
-    };
-  contentImage.onerror = function(evt) {
-      element.classList.add('picture-load-failure');
-    };
+  };
+  contentImage.onerror = function() {
+    element.classList.add('picture-load-failure');
+  };
   var contentImage = new Image();
   contentImage.src = data.url;
   container.appendChild('element');
