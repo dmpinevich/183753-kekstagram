@@ -17,9 +17,9 @@ getPictureElement = function(data, container) {
   container.appendChild('element');
   var contentImage = new Image();
   contentImage.onload = function(evt) {
-    element.firstChild.src = "evt.target.url";
-    element.firstChild.width = "182px";
-    element.firstChild.height = "182px";
+    element.firstChild.src = evt.target.url;
+    element.firstChild.width = '182px';
+    element.firstChild.height = '182px';
   };
   contentImage.onerror = function() {
     element.classList.add('.picture-load-failure');
