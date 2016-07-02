@@ -1,6 +1,7 @@
 'use strict';
 var picturesContainer = document.querySelector('.pictures');
-document.querySelector('.filters').classList.add('hidden');
+var filtersContainer = document.querySelector('.filters');
+filtersContainer.classList.add('hidden');
 var templateElement = document.querySelector('template');
 var elementToClone;
 if ('content' in templateElement) {
@@ -15,9 +16,10 @@ var getPictureElement = function(data, container) {
   container.appendChild(element);
   var contentImage = new Image();
   contentImage.onload = function() {
-    element.querySelector('img').src = data.url;
-    element.querySelector('img').width = 182;
-    element.querySelector('img').height = 182;
+    var imageElement = element.querySelector('img');
+    imageElement.src = data.url;
+    imageElement.width = 182;
+    imageElement.height = 182;
   };
   contentImage.onerror = function() {
     element.classList.add('picture-load-failure');
@@ -28,4 +30,4 @@ var getPictureElement = function(data, container) {
 window.pictures.forEach(function(picture) {
   getPictureElement(picture, picturesContainer);
 });
-document.querySelector('.filters').classList.remove('hidden');
+filtersContainer.classList.remove('hidden');
