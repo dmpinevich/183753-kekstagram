@@ -12,12 +12,12 @@ var getPictureElement = function(data, container) {
   var element = elementToClone.cloneNode(true);
   element.querySelector('.picture-comments').textContent = data.comments;
   element.querySelector('.picture-likes').textContent = data.likes;
-  container.appendChild('element');
+  container.appendChild(element);
   var contentImage = new Image();
-  contentImage.onload = function(evt) {
-    element.firstChild.src = evt.target.url;
-    element.firstChild.width = 182;
-    element.firstChild.height = 182;
+  contentImage.onload = function() {
+    element.querySelector('img').src = data.url;
+    element.querySelector('img').width = 182;
+    element.querySelector('img').height = 182;
   };
   contentImage.onerror = function() {
     element.classList.add('picture-load-failure');
