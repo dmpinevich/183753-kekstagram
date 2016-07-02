@@ -1,6 +1,6 @@
 'use strict';
 var picturesContainer = document.querySelector('.pictures');
-document.forms[0].classList.add = ('hidden');
+document.forms[0].classList.add('hidden');
 var templateElement = document.querySelector('template');
 var elementToClone;
 if ('content' in templateElement) {
@@ -30,4 +30,4 @@ getPictureElement = function(data, container) {
 window.pictures.forEach(function(picture) {
   getPictureElement(picture, picturesContainer);
 });
-document.forms[0].classList.remove = ('hidden');
+document.forms[0].classList.remove('hidden');
