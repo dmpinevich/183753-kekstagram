@@ -1,6 +1,6 @@
 'use strict';
 var picturesContainer = document.querySelector('.pictures');
-document.forms[0].classList.add('hidden');
+document.querySelector('.filters').classList.add('hidden');
 var templateElement = document.querySelector('template');
 var elementToClone;
 if ('content' in templateElement) {
@@ -8,12 +8,10 @@ if ('content' in templateElement) {
 } else {
   elementToClone = templateElement.querySelector('.picture');
 }
-var getPictureElement;
-getPictureElement = function(data, container) {
+var getPictureElement = function(data, container) {
   var element = elementToClone.cloneNode(true);
-  element.querySelector('.picture-stats').textContent = data.date;
-  element.querySelector('.picture-stat picture-comments').textContent = data.comments;
-  element.querySelector('.picture-stat picture-likes').textContent = data.likes;
+  element.querySelector('.picture-comments').textContent = data.comments;
+  element.querySelector('.picture-likes').textContent = data.likes;
   container.appendChild('element');
   var contentImage = new Image();
   contentImage.onload = function(evt) {
@@ -30,4 +28,4 @@ getPictureElement = function(data, container) {
 window.pictures.forEach(function(picture) {
   getPictureElement(picture, picturesContainer);
 });
-document.forms[0].classList.remove('hidden');
+document.querySelector('.filters').classList.remove('hidden');
