@@ -32,8 +32,7 @@ var getPictureElement = function(data, container) {
 };
 var getPictures = function(callback) {
   var xhr = new XMLHttpRequest();
-  var pictureLoadTimeout;
-  picturesContainer.classList.add('pictures-loading ');
+  picturesContainer.classList.add('pictures-loading');
   xhr.onload = function(evt) {
     picturesContainer.classList.remove('pictures-loading ');
     clearTimeout(picturesLoadTimeout);
@@ -44,7 +43,7 @@ var getPictures = function(callback) {
     picturesContainer.classList.remove('pictures-loading ');
     picturesContainer.classList.add('picture-load-failure');
   };
-  var picturesLoadTimeout = setTimeout(picturesContainer.classList.add('picture-load-failure'), PICTURE_LOAD_TIMEOUT);
+  var picturesLoadTimeout = setTimeout(picturesContainer.classList.add('picture-load-failure'), PICTURES_LOAD_TIMEOUT);
   xhr.ontimeout = function() {
     picturesContainer.classList.remove('pictures-loading ');
   };
@@ -74,7 +73,7 @@ var getFilteredPictures = function(pictures, filter) {
     });
       break;
   }
-  if(filteredPictures.length == 0) {
+  if(filteredPictures.length === 0) {
     picturesContainer.innerHTML = 'Ни один элемент из списка не подходит под выбранные критерии';
   }
   return filteredPictures;
