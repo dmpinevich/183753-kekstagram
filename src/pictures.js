@@ -44,11 +44,11 @@ var getPictures = function(callback) {
     picturesContainer.classList.remove('pictures-loading ');
     picturesContainer.classList.add('picture-load-failure');
   };
-  var picturesLoadTimeout = setTimeout(picturesContainer.classList.add('picture-load-failure'), PICTURES_LOAD_TIMEOUT);
+  var picturesLoadTimeout = setTimeout(picturesContainer.classList.add('picture-load-failure'), PICTURE_LOAD_TIMEOUT);
   xhr.ontimeout = function() {
     picturesContainer.classList.remove('pictures-loading ');
-  }
-  xhr.open('GET','PICTURES_LOAD_URL');
+  };
+  xhr.open('GET', PICTURES_LOAD_URL);
   xhr.send();
 };
 var renderPictures = function(pictures) {
@@ -63,23 +63,21 @@ var getFilteredPictures = function(pictures, filter) {
   switch (filter) {
     case 'filter-popular': filteredPictures = picturesToFilter;
       break;
-    case 'filter-new': filteredPictures = picturesToFilter.filter(function(picture){
-      return (Date.now() - picture.date.valueOf()) < FOUR_DAY_MS
+    case 'filter-new': filteredPictures = picturesToFilter.filter(function(picture) {
+      return (Date.now() - picture.date.valueOf()) < FOUR_DAY_MS;
     }).map(function(a, b) {
-       return a.date.valueOf() - b.date.valueOf()
+      return a.date.valueOf() - b.date.valueOf();
     });
       break;
-    case 'filter-discussed': filteredPictures = picturesToFilter.map(function (a, b) {
-        return a.comments.length - b.comments.length
+    case 'filter-discussed': filteredPictures = picturesToFilter.map(function(a, b) {
+      return a.comments.length - b.comments.length;
     });
       break;
   }
-  if(filteredPictures.length > 0) {
-    return filteredPictures;
-  } else {
+  if(filteredPictures.length == 0) {
     picturesContainer.innerHTML = 'Ни один элемент из списка не подходит под выбранные критерии';
   }
-
+  return filteredPictures;
 };
 var setFilterEnabled = function(filter) {
   var filteredPictures = getFilteredPictures(pictures, filter);
@@ -89,15 +87,15 @@ var setFilterEnabled = function(filter) {
 };
 var setFiltrationEnabled = function() {
   var filters = filtersContainer.querySelectorAll('.filter-radio');
-  filters.forEach(function (filter) {
+  filters.forEach(function(filter) {
     filter.checked = false;
   });
   for (var i = 0; i < filters.length; i++) {
     filters[i].onclick = function(evt) {
-      setFilterEnabled(this.id);
+      setFilterEnabled(evt.target.id);
     };
   }
-  };
+};
 getPictures(function(loadedPictures) {
   pictures = loadedPictures;
   renderPictures(pictures);
