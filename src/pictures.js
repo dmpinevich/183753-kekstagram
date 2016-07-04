@@ -35,7 +35,6 @@ var getPictures = function(callback) {
   picturesContainer.classList.add('pictures-loading');
   xhr.onload = function(evt) {
     picturesContainer.classList.remove('pictures-loading ');
-    clearTimeout(picturesLoadTimeout);
     loadedPictures = JSON.parse(evt.target.response);
     callback(loadedPictures);
   };
