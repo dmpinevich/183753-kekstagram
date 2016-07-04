@@ -9,7 +9,7 @@ if ('content' in templateElement) {
 } else {
   elementToClone = templateElement.querySelector('.picture');
 }
-var PICTURES_LOAD_URL = 'http://o0.github.io/assets/json/pictures.json ';
+var PICTURES_LOAD_URL = 'http://o0.github.io/assets/json/pictures.json';
 var FOUR_DAY_MS = 345600000;
 var loadedPictures = [];
 var getPictureElement = function(data, container) {
@@ -34,17 +34,18 @@ var getPictures = function(callback) {
   var xhr = new XMLHttpRequest();
   picturesContainer.classList.add('pictures-loading');
   xhr.onload = function(evt) {
-    picturesContainer.classList.remove('pictures-loading ');
+    picturesContainer.classList.remove('pictures-loading');
     loadedPictures = JSON.parse(evt.target.response);
     callback(loadedPictures);
   };
   xhr.onerror = function() {
-    picturesContainer.classList.remove('pictures-loading ');
+    picturesContainer.classList.remove('pictures-loading');
     picturesContainer.classList.add('picture-load-failure');
   };
   xhr.timeout = 10000;
   xhr.ontimeout = function() {
-    picturesContainer.classList.remove('pictures-loading ');
+    picturesContainer.classList.remove('pictures-loading');
+    picturesContainer.classList.add('picture-load-failure');
   };
   xhr.open('GET', PICTURES_LOAD_URL);
   xhr.send();
@@ -84,11 +85,9 @@ var setFilterEnabled = function(filter) {
   filterToActive.checked = true;
 };
 var setFiltrationEnabled = function() {
-  var filters = filtersContainer.querySelectorAll('.filter-radio');
-  filters.forEach(function(filter) {
-    filter.checked = false;
-  });
+  var filters = filtersContainer.querySelectorAll('.filters-radio');
   for (var i = 0; i < filters.length; i++) {
+    filters[i].checked = false;
     filters[i].onclick = function(evt) {
       setFilterEnabled(evt.target.id);
     };
