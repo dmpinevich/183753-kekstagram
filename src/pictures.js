@@ -10,8 +10,8 @@ if ('content' in templateElement) {
   elementToClone = templateElement.querySelector('.picture');
 }
 var PICTURES_LOAD_URL = 'http://o0.github.io/assets/json/pictures.json ';
-var PICTURES_LOAD_TIMEOUT = 10000;
 var FOUR_DAY_MS = 345600000;
+var loadedPictures = [];
 var getPictureElement = function(data, container) {
   var element = elementToClone.cloneNode(true);
   element.querySelector('.picture-comments').textContent = data.comments;
@@ -36,14 +36,14 @@ var getPictures = function(callback) {
   xhr.onload = function(evt) {
     picturesContainer.classList.remove('pictures-loading ');
     clearTimeout(picturesLoadTimeout);
-    var loadedData = JSON.parse(evt.target.response);
-    callback(loadedData);
+    loadedPictures = JSON.parse(evt.target.response);
+    callback(loadedPictures);
   };
   xhr.onerror = function() {
     picturesContainer.classList.remove('pictures-loading ');
     picturesContainer.classList.add('picture-load-failure');
   };
-  var picturesLoadTimeout = setTimeout(picturesContainer.classList.add('picture-load-failure'), PICTURES_LOAD_TIMEOUT);
+  xhr.timeout = 10000;
   xhr.ontimeout = function() {
     picturesContainer.classList.remove('pictures-loading ');
   };
@@ -64,11 +64,11 @@ var getFilteredPictures = function(pictures, filter) {
       break;
     case 'filter-new': filteredPictures = picturesToFilter.filter(function(picture) {
       return (Date.now() - picture.date.valueOf()) < FOUR_DAY_MS;
-    }).map(function(a, b) {
+    }).sort(function(a, b) {
       return a.date.valueOf() - b.date.valueOf();
     });
       break;
-    case 'filter-discussed': filteredPictures = picturesToFilter.map(function(a, b) {
+    case 'filter-discussed': filteredPictures = picturesToFilter.sort(function(a, b) {
       return a.comments.length - b.comments.length;
     });
       break;
@@ -79,7 +79,7 @@ var getFilteredPictures = function(pictures, filter) {
   return filteredPictures;
 };
 var setFilterEnabled = function(filter) {
-  var filteredPictures = getFilteredPictures(pictures, filter);
+  var filteredPictures = getFilteredPictures(loadedPictures, filter);
   renderPictures(filteredPictures);
   var filterToActive = document.getElementById(filter);
   filterToActive.checked = true;
@@ -95,9 +95,8 @@ var setFiltrationEnabled = function() {
     };
   }
 };
-getPictures(function(loadedPictures) {
-  pictures = loadedPictures;
-  renderPictures(pictures);
+getPictures(function(pictures) {
   setFiltrationEnabled();
+  renderPictures(pictures);
 });
 filtersContainer.classList.remove('hidden');
