@@ -39,22 +39,28 @@ var getPictures = function(callback) {
     callback(loadedPictures);
   };
   xhr.onerror = function() {
-    picturesContainer.classList.remove('pictures-loading');
-    picturesContainer.classList.add('picture-load-failure');
+    modifyAtt();
   };
   xhr.timeout = 10000;
   xhr.ontimeout = function() {
-    picturesContainer.classList.remove('pictures-loading');
-    picturesContainer.classList.add('picture-load-failure');
+    modifyAtt();
   };
   xhr.open('GET', PICTURES_LOAD_URL);
   xhr.send();
 };
 var renderPictures = function(pictures) {
-  picturesContainer.innerHTML = '';
-  pictures.forEach(function(picture) {
-    getPictureElement(picture, picturesContainer);
-  });
+  if(pictures.length == 0) {
+    picturesContainer.innerHTML = 'Ни один элемент из списка не подходит под выбранные критерии';
+  } else {
+    picturesContainer.innerHTML = '';
+    pictures.forEach(function(picture) {
+      getPictureElement(picture, picturesContainer);
+    });
+  }
+};
+var modifyAtt = function() {
+  picturesContainer.classList.remove('pictures-loading');
+  picturesContainer.classList.add('picture-load-failure');
 };
 var getFilteredPictures = function(pictures, filter) {
   var picturesToFilter = pictures.slice(0);
@@ -73,21 +79,16 @@ var getFilteredPictures = function(pictures, filter) {
     });
       break;
   }
-  if(filteredPictures.length === 0) {
-    picturesContainer.innerHTML = 'Ни один элемент из списка не подходит под выбранные критерии';
-  }
   return filteredPictures;
 };
 var setFilterEnabled = function(filter) {
   var filteredPictures = getFilteredPictures(loadedPictures, filter);
   renderPictures(filteredPictures);
   var filterToActive = document.getElementById(filter);
-  filterToActive.checked = true;
 };
 var setFiltrationEnabled = function() {
-  var filters = filtersContainer.querySelectorAll('.filters-radio');
+   var filters = filtersContainer.querySelectorAll('.filters-radio');
   for (var i = 0; i < filters.length; i++) {
-    filters[i].checked = false;
     filters[i].onclick = function(evt) {
       setFilterEnabled(evt.target.id);
     };
@@ -98,4 +99,4 @@ getPictures(function(pictures) {
   renderPictures(pictures);
 });
 filtersContainer.classList.remove('hidden');
-filtersContainer.querySelector('#filter-popular').checked = true;
+
