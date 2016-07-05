@@ -30,6 +30,11 @@ var getPictureElement = function(data, container) {
   contentImage.src = data.url;
   return element;
 };
+var getErrorElement = function(container) {
+  var element = elementToClone.cloneNode;
+  element.innerHTML = 'Ни один элемент из списка </br>не подходит под выбранные</br> критерии';
+  container.appendChild(element);
+}
 var getPictures = function(callback) {
   var xhr = new XMLHttpRequest();
   picturesContainer.classList.add('pictures-loading');
@@ -50,7 +55,7 @@ var getPictures = function(callback) {
 };
 var renderPictures = function(pictures) {
   if(pictures.length === 0) {
-    picturesContainer.innerHTML = 'Ни один элемент из списка </br>не подходит под выбранные</br> критерии';
+    getErrorElement(picturesContainer);
   } else {
     picturesContainer.innerHTML = '';
     pictures.forEach(function(picture) {
