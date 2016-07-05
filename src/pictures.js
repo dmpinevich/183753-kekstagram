@@ -49,7 +49,7 @@ var getPictures = function(callback) {
   xhr.send();
 };
 var renderPictures = function(pictures) {
-  if(pictures.length == 0) {
+  if(pictures.length === 0) {
     picturesContainer.innerHTML = 'Ни один элемент из списка не подходит под выбранные критерии';
   } else {
     picturesContainer.innerHTML = '';
@@ -84,10 +84,9 @@ var getFilteredPictures = function(pictures, filter) {
 var setFilterEnabled = function(filter) {
   var filteredPictures = getFilteredPictures(loadedPictures, filter);
   renderPictures(filteredPictures);
-  var filterToActive = document.getElementById(filter);
 };
 var setFiltrationEnabled = function() {
-   var filters = filtersContainer.querySelectorAll('.filters-radio');
+  var filters = filtersContainer.querySelectorAll('.filters-radio');
   for (var i = 0; i < filters.length; i++) {
     filters[i].onclick = function(evt) {
       setFilterEnabled(evt.target.id);
