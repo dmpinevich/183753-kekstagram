@@ -34,7 +34,7 @@ var getErrorElement = function(container) {
   var element = elementToClone.cloneNode;
   element.innerHTML = 'Ни один элемент из списка </br>не подходит под выбранные</br> критерии';
   container.appendChild(element);
-}
+};
 var getPictures = function(callback) {
   var xhr = new XMLHttpRequest();
   picturesContainer.classList.add('pictures-loading');
