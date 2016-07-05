@@ -50,7 +50,7 @@ var getPictures = function(callback) {
 };
 var renderPictures = function(pictures) {
   if(pictures.length === 0) {
-    picturesContainer.innerHTML = 'Ни один элемент из списка не подходит под выбранные критерии';
+    picturesContainer.innerHTML = 'Ни один элемент из списка </br>не подходит под выбранные</br> критерии';
   } else {
     picturesContainer.innerHTML = '';
     pictures.forEach(function(picture) {

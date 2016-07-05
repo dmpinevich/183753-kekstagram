@@ -340,8 +340,9 @@ input[type=radio]:checked + .upload-filter-label {
   margin: 0 auto;
   padding-left: 12px;
 
-  font-size: 0px;
+  font-size: 22px;
   text-align: left;
+  color: #990000;
 }
 
 .pictures-loading:after,
