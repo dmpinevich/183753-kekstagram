@@ -63,13 +63,13 @@ var getFilteredPictures = function(pictures, filter) {
     case 'filter-popular': filteredPictures = picturesToFilter;
       break;
     case 'filter-new': filteredPictures = picturesToFilter.filter(function(picture) {
-      return (Date.now() - picture.date.valueOf()) < FOUR_DAY_MS;
+      return (Date.now() - new Date(picture.date).valueOf()) < FOUR_DAY_MS;
     }).sort(function(a, b) {
-      return a.date.valueOf() - b.date.valueOf();
+      return new Date(a.date).getMilliseconds() - new Date(b.date).getMilliseconds();
     });
       break;
     case 'filter-discussed': filteredPictures = picturesToFilter.sort(function(a, b) {
-      return a.comments.length - b.comments.length;
+      return a.comments - b.comments;
     });
       break;
   }
@@ -98,3 +98,4 @@ getPictures(function(pictures) {
   renderPictures(pictures);
 });
 filtersContainer.classList.remove('hidden');
+filtersContainer.querySelector('#filter-popular').checked = true;
