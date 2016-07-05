@@ -63,13 +63,13 @@ var getFilteredPictures = function(pictures, filter) {
     case 'filter-popular': filteredPictures = picturesToFilter;
       break;
     case 'filter-new': filteredPictures = picturesToFilter.filter(function(picture) {
-      return (Date.now() - new Date(picture.date).valueOf()) < FOUR_DAY_MS;
+      return (Date.now() - new Date(picture.date).getTime()) < FOUR_DAY_MS;
     }).sort(function(a, b) {
       return new Date(a.date).getMilliseconds() - new Date(b.date).getMilliseconds();
     });
       break;
     case 'filter-discussed': filteredPictures = picturesToFilter.sort(function(a, b) {
-      return a.comments - b.comments;
+      return b.comments - a.comments;
     });
       break;
   }
